@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, request, send_file
 import google.generativeai as genai
+from dotenv import load_dotenv
 import os
 app = Flask(__name__)
 
+
+load_dotenv()
 APIKEY = ""
 
 genai.configure(api_key=APIKEY)
