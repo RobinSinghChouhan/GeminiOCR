@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
@@ -12,14 +12,14 @@ genai.configure(api_key=APIKEY)
 
 model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
-@app.route('/api/question/<question>',methods=['GET'])
-def hello(question):
+@app.route('/',methods=['GET'])
+def hello():
+    return jsonify({'message:':'Server is runnung!'})
+
+@app.route('/api/gemini/<question>',methods=['GET'])
+def geminiResponse(question):
     response = model.generate_content(str(question))
+    print(response)
     return jsonify({'message:':response.text})
 
 app.run()
-
-
-
-
-
