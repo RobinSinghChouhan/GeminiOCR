@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,7 +55,7 @@ fun Form(modifier: Modifier = Modifier) {
     var answer by remember { mutableStateOf("Waiting") }
     val context = LocalContext.current
     Column(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
@@ -67,13 +68,13 @@ fun Form(modifier: Modifier = Modifier) {
                 Text("Enter Query")
             }
         )
-        Text(answer, fontSize = 24.sp)
+        Text(text = answer, fontSize = 24.sp)
         Spacer(
             modifier = Modifier.height(20.dp)
         )
         ElevatedButton(
             onClick = {
-                val inputGemini = question;
+                val inputGemini = question
                 val apiInterface = RetrofitClient.getInstance().create(GeminiInterface::class.java)
                 apiInterface.getResponse(inputGemini).enqueue(object :Callback<JsonObject>{
                     override fun onResponse(
@@ -90,7 +91,7 @@ fun Form(modifier: Modifier = Modifier) {
                     }
 
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                        Log.i("Error",call.toString());
+                        Log.i("Error",call.toString())
                         Toast.makeText(
                             context,
                             "Error!",
