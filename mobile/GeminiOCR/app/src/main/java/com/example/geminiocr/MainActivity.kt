@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Form(modifier: Modifier = Modifier) {
     var question by remember { mutableStateOf("") }
-    var answer by remember { mutableStateOf("Waiting") }
+    var answer by remember { mutableStateOf("Waiting...") }
     val context = LocalContext.current
     Column(
         modifier = modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
