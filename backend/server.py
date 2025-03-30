@@ -22,4 +22,4 @@ def geminiResponse(question):
     print(response)
     return jsonify({'message:':response.text})
 
-app.run()
+app.run(host='0.0.0.0', port=5001)
