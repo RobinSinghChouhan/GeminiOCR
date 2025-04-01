@@ -12,7 +12,7 @@ genai.configure(api_key=APIKEY)
 
 model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
-@app.route('/',methods=['GET'])
+@app.route('/api/hello',methods=['GET'])
 def hello():
     return jsonify({'message:':'Server is runnung!'})
 
