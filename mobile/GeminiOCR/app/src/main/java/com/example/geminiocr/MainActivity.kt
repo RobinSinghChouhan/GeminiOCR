@@ -65,7 +65,7 @@ fun Form(modifier: Modifier = Modifier) {
             },
             modifier = modifier,
             label = {
-                Text("Enter Query:")
+                Text("Enter Query")
             }
         )
         Text(text = answer, fontSize = 24.sp)
