@@ -103,7 +103,7 @@ fun Form(modifier: Modifier = Modifier) {
                 question=""
             }
         ) {
-            Text("Ask")
+            Text("Ask?")
         }
     }
 }
